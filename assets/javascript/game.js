@@ -1,79 +1,78 @@
-var totalScore = $('#totalScore');
-//var yourScore = getElementById(red, blue, yellow, green.onclick(math.sum));
-totalScore.html('0'); //
-var numberToMatch = $('#random-number');
-numberToMatch.html(randomNumber);
+$(document).ready(function() {
 
-function randomNumber() {
-    return Math.floor((Math.random() * 100) + 10);
-}
+    // VARIABLES
 
+    var randomNumber = Math.floor((Math.random() * 120) + 19);
+    $('#random-number').html(randomNumber);
+    console.log(randomNumber);
+    var crystalValue1 = Math.floor((Math.random() * 12) + 1);
+    var crystalValue2 = Math.floor((Math.random() * 12) + 1);
+    var crystalValue3 = Math.floor((Math.random() * 12) + 1);
+    var crystalValue4 = Math.floor((Math.random() * 12) + 1);
+    var wins = 0;
+    var losses = 0;
+    var totalScore = 0;
+    $("#totalWins").text(wins);
+    $("#totalLosses").text(losses);
+    $("#totalScore").text(totalScore);
 
+    // CALCULATE TOTAL SCORE AND COMPARE TO RANDOM NUMBER
 
-
-
-function addToScore(val) {
-    var numberToAdd = parseInt(val);
-    var currentScore = parseInt(yourScore.innerHTML);
-    yourScore.innerHTML = numberToAdd + currentScore;
-}
-
-var red = document.getElementById("red");
-//red.setAttribute("value", "5");
-console.log(red.value);
-
-var blue = document.getElementById("blue");
-//console.log(blue.value);
-
-var yellow = document.getElementById("yellow");
-//console.log(yellow.value);
-
-var green = document.getElementById("green");
-//console.log(green.value);
-
-// add an event listener to elements
-red.addEventListener('click', function() {
-    //this refers to red
-    addToScore(this.value);
-    checkPlayerScore();
-});
-
-//parseInt(42.01) => 42
-//alert(parseInt('james')); // NaN (not a number)
-// Cafe Del Mar ChillWave 2 :)
-// .innerHTML returns a string, NaN
-
-blue.addEventListener('click', function() {
-    // this refers to blue
-    addToScore(this.value);
-    checkPlayerScore();
-});
-
-yellow.addEventListener('click', function() {
-    // this refers to blue
-    addToScore(this.value);
-    checkPlayerScore();
-});
-
-green.addEventListener('click', function() {
-    // this refers to blue
-    addToScore(this.value);
-    checkPlayerScore();
-});
-//var sum = parseInt(red.value) + parseInt(blue.value) + parseInt(yelow.value) + parseInt(green.value);
-
-// console.log (sum);
+    $('.crystal').on("click", function() {
+        value = $(this).attr("value");
+        if (parseInt(value) === 1) {
+            totalScore = totalScore + crystalValue1;
+            console.log("New totalScore " + totalScore);
+            $("#totalScore").text(totalScore);
+            winLoss();
+        } else if (parseInt(value) === 2) {
+            totalScore = totalScore + crystalValue2;
+            console.log("New totalScore " + totalScore);
+            $("#totalScore").text(totalScore);
+            winLoss();
+        } else if (parseInt(value) === 3) {
+            totalScore = totalScore + crystalValue3;
+            console.log("New totalScore " + totalScore);
+            $("#totalScore").text(totalScore);
+            winLoss();
+        } else if (parseInt(value) === 4) {
+            totalScore = totalScore + crystalValue4;
+            console.log("New totalScore " + totalScore);
+            $("#totalScore").text(totalScore);
+            winLoss();
+        }
 
 
-function checkPlayerScore() {
-    //yourScore, targetScore (parseFloat() is for decimals)
-    var playerInt = parseInt(yourScore.innerHTML);
-    var targetInt = parseInt(targetScore.innerHTML);
-    if (playerInt === targetInt) {
-        alert('You win!');
-    } else if (playerInt > targetInt) {
-        alert('You lose!');
+    });
+
+    // RESET THE GAME
+
+    function reset() {
+        randomNumber = Math.floor((Math.random() * 120) + 19);
+        console.log(randomNumber);
+        $('#random-number').text(randomNumber);
+        crystalValue1 = Math.floor((Math.random() * 12) + 1);
+        crystalValue2 = Math.floor((Math.random() * 12) + 1);
+        crystalValue3 = Math.floor((Math.random() * 12) + 1);
+        crystalValue4 = Math.floor((Math.random() * 12) + 1);
+        totalScore = 0;
+        $("#totalScore").text(totalScore);
     }
-}
 
-console.log(getRandomValue(10, 4));
+    // WIN-LOSS FUNCTION
+
+    function winLoss() {
+        if (totalScore === randomNumber) {
+            wins++;
+            $("#alert-win-loss").html('You won!!');
+            $("#totalWins").text(wins);
+            reset();
+        } else if (totalScore > randomNumber) {
+            losses++;
+            $("#alert-win-loss").html('You lost!!');
+            $("#totalLosses").text(losses);
+            reset();
+        }
+    }
+
+});

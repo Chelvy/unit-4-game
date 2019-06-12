@@ -18,12 +18,14 @@
     <!-- This Container for the whole page -->
     <div class="container">
         <!-- The header -->
-        <div class="header">
-            <h1>CrystalsCollector!</h1>
+        <div class="row">
+            <div class="header">
+                <h1>CrystalsCollector!</h1>
+            </div>
         </div>
         <!-- The Game Instructions and Rules -->
         <div class="row">
-            <div class="col-lg-6">
+            <div class="Instructions">
                 <p>You will be given a random number at the start of the gane.</p>
                 <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
                 <p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
@@ -33,47 +35,41 @@
         </div>
         <div class="row">
             <!-- Display the random number to match -->
-            <div class="col-lg-3">
-                <div class="random-number"></div>
-            </div>
+            <div class="col-lg-3" id="random-number"></div>
             <!-- Display Wins/Losses -->
-            <div class="col-lg-1">
-                <div id="foundWord"></div>
+            <div class="col-lg-1 alert-win-loss">
+                <div id="alert-win-loss"></div>
                 <div class="WinLoss">
-                    <p>Wins:
-                        <div id="totalWins"></div>
-                    </p>
 
-                    <p>Losses:
-                        <div id="totalLosses"></div>
-                    </p>
+                    <div>Wins: <span id="totalWins"></span></div>
+                    <div>Losses: <span id="totalLosses"></span></div>
 
                 </div>
             </div>
         </div>
         <!-- Display Crystals' buttons -->
         <div class="row">
-            <div class="col-lg-1">
-                <button class="crystal" id="btn1" value="1"></button>
+            <div class="col-sm-2">
+                <button class="crystal" id="btn-1" type="submit" value="2"></button>
             </div>
-            <div class="col-lg-1">
-                <button class="crystal" id="btn2" value="2"></button>
+            <div class="col-sm-2">
+                <button class="crystal" id="btn-2" type="submit" value="4"></button>
             </div>
-            <div class="col-lg-1">
-                <button class="crystal" id="btn3" value="3"></button>
+            <div class="col-sm-2">
+                <button class="crystal" id="btn-3" type="submit" value="1"></button>
             </div>
-            <div class="col-lg-1">
-                <button class="crystal" id="btn4" value="4"></button>
+            <div class="col-sm-2">
+                <button class="crystal" id="btn-4" type="submit" value="3"></button>
             </div>
         </div>
         <!-- Display Guess Number -->
         <div class="row">
-            <div class="col-lg-3">
-                <p>Your total score is:</p>
+            <div class="col-lg-3 text">
+                Your total score is:
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 score">
                 <div id="totalScore"></div>
             </div>
         </div>
